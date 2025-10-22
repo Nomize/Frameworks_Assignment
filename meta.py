@@ -6,7 +6,18 @@ from wordcloud import WordCloud
 
 # --- Load Data ---
 cols = ["title", "abstract", "publish_time", "journal", "authors"]
-df = pd.read_csv("data/metadata.csv", usecols=cols, nrows=100000, low_memory=False)
+import os
+
+# --- Load Data (Smart Fallback) ---
+cols = ["title", "abstract", "publish_time", "journal", "authors"]
+
+# Prefer sample file if available
+if os.path.exists("data/metadata_sample.csv"):
+    df = pd.read_csv("data/metadata_sample.csv", usecols=cols, low_memory=False)
+    print("✅ Loaded sample dataset (for Streamlit Cloud)")
+else:
+    df = pd.read_csv("data/metadata.csv", usecols=cols, nrows=100000, low_memory=False)
+    print("✅ Loaded full dataset (local environment)")
 
 # --- Preprocess Data ---
 df["publish_time"] = pd.to_datetime(df["publish_time"], errors="coerce")

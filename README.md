@@ -50,85 +50,63 @@ This project explores the **CORD-19 (COVID-19 Open Research Dataset)** and demon
 - Added a new column for abstract word counts  
 
 ```python
+
 df["publish_time"] = pd.to_datetime(df["publish_time"], errors="coerce")
 df["year"] = df["publish_time"].dt.year
 df["abstract_word_count"] = df["abstract"].fillna("").apply(lambda x: len(x.split()))
-3️⃣ Data Analysis & Visualization
-Key Analyses
-Publications over time – trends in COVID-19 research activity
 
-Top publishing journals – top 10 journals by publication count
+## 3️⃣ Data Analysis & Visualization
 
-Word cloud of titles – most frequent words in paper titles
+### Key Analyses
+- Publications over time – trends in COVID-19 research activity
+- Top publishing journals – top 10 journals by publication count
+- Word cloud of titles – most frequent words in paper titles
+- Abstract length distribution – histogram showing paper length trends
 
-Abstract length distribution – histogram showing paper length trends
+### Libraries Used
+- pandas – data cleaning & manipulation
+- matplotlib, seaborn – data visualization
+- wordcloud – keyword visualization
+- streamlit – interactive web interface
 
-Libraries Used
-pandas – data cleaning & manipulation
+### Example Visualization:
+*Top 10 Journals Publishing COVID-19 Research (bar chart)*
 
-matplotlib, seaborn – data visualization
+## 4️⃣ Streamlit Application
+*The Streamlit app provides an interactive dashboard to explore the dataset dynamically.*
 
-wordcloud – keyword visualization
+### App Features
+- Filter publications by year range
+- View dynamic visualizations (time trends, top journals, word clouds)
+- Explore sample data directly in the browser
 
-streamlit – interactive web interface
-
-Example Visualization:
-Top 10 Journals Publishing COVID-19 Research (bar chart)
-
-4️⃣ Streamlit Application
-The Streamlit app provides an interactive dashboard to explore the dataset dynamically.
-
-App Features
-Filter publications by year range
-
-View dynamic visualizations (time trends, top journals, word clouds)
-
-Explore sample data directly in the browser
-
-Running Locally
-Install dependencies:
-
-bash
-Copy code
+## Running Locally
+*Install dependencies:*
 pip install -r requirements.txt
-Run the Streamlit app:
-
-bash
-Copy code
+## Run the Streamlit app:
 streamlit run meta.py
 Or simply explore the hosted version here:
-👉 Live App on Streamlit Cloud
+*👉 Live App on Streamlit Cloud* https://nomize-frameworks-assignment-meta-cst38i.streamlit.app/
 
-5️⃣ Challenges & Reflections
-Challenges
-Handling a large dataset (>1GB) that couldn’t be easily loaded on limited RAM
 
-Managing Git and Streamlit Cloud storage constraints
+### 5️⃣ Challenges & Reflections
+## Challenges
+- Handling a large dataset (>1GB) that couldn’t be easily loaded on limited RAM
+- Managing Git and Streamlit Cloud storage constraints
+- Optimizing for performance while maintaining analytical depth
 
-Optimizing for performance while maintaining analytical depth
+## What I Learned
+- Practical data cleaning and visualization workflows
+- Integrating Python notebooks with Streamlit for web-based analysis
+- Efficient handling of real-world data at scale
+- Deployment of interactive data apps on cloud platforms
 
-What I Learned
-Practical data cleaning and visualization workflows
+### 6️⃣ Credits
+- Dataset: CORD-19 (COVID-19 Open Research Dataset)
+- Frameworks: pandas, matplotlib, seaborn, wordcloud, streamlit
+- Created by: Nomize
 
-Integrating Python notebooks with Streamlit for web-based analysis
-
-Efficient handling of real-world data at scale
-
-Deployment of interactive data apps on cloud platforms
-
-6️⃣ Credits
-Dataset: CORD-19 (COVID-19 Open Research Dataset)
-
-Frameworks: pandas, matplotlib, seaborn, wordcloud, streamlit
-
-Created by: Nomize (Sora)
-
-🧭 Final Notes
-The app is fully deployed and functional on Streamlit Cloud.
-
-You can clone this repository, replace the sample dataset with your own, and run the analysis locally.
-
-The analysis output varies depending on the selected publication year range — wider year spans yield richer visualizations.
-
-yaml
-Copy code
+## 🧭 Final Notes
+-The app is fully deployed and functional on Streamlit Cloud
+- You can clone this repository, replace the sample dataset with your own, and run the analysis locally.
+- The analysis output varies depending on the selected publication year range — wider year spans yield richer visualizations.

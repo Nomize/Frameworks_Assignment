@@ -1,150 +1,136 @@
-# Python Frameworks Assignment: CORD-19 Data Analysis and Streamlit App
+.
 
-Welcome to my **Python Frameworks Assignment**! This repository contains my work analyzing the [CORD-19](https://www.semanticscholar.org/cord19) dataset, performing data cleaning, visualization, and building an interactive Streamlit app.
+🧠 Python Frameworks Assignment: CORD-19 Data Analysis & Streamlit App
 
----
+Welcome to my Python Frameworks Assignment!
+This repository showcases my work analyzing the CORD-19 research dataset, focusing on data exploration, visualization, and the creation of an interactive Streamlit web app for insight discovery.
 
-## 📂 Repository Structure
+🔗 Live App: View on Streamlit Cloud https://nomize-frameworks-assignment-meta-cst38i.streamlit.app/
 
-Frameworks_Assignments/
-├── meta.py # Streamlit app code
-├── pyDA.ipynb # Jupyter Notebook for data exploration & visualization
-├── .gitignore # Ignores metadata.csv
-└── README.md # Project documentation
+📁 GitHub Repository: Nomize/Frameworks_Assignment https://github.com/Nomize/Frameworks_Assignment
 
-> **Note:** The `metadata.csv` dataset is **not included** in the repo due to its large size (>1GB). Please download it separately from the [CORD-19 dataset] (https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge) if you wish to run the analysis locally.
+📂 Repository Structure
+Frameworks_Assignment/
+├── data/
+│   └── metadata_sample.csv        # 2,000-row sample dataset for testing
+├── meta.py                        # Streamlit app code
+├── pyDA.py                        # Data processing script (used to create sample)
+├── pyDA.ipynb                     # Jupyter Notebook for initial exploration
+├── requirements.txt               # Project dependencies for Streamlit Cloud
+├── .gitignore                     # Ignores large files (metadata.csv, etc.)
+└── README.md                      # Project documentation
+Note: The full metadata.csv (CORD-19) file is not included in the repo due to its large size (~2GB).
+A smaller metadata_sample.csv file has been generated and is used for the Streamlit demo.
 
----
+🧾 1️⃣ Project Overview
 
-## 📝 Assignment Overview
+This project explores the CORD-19 (COVID-19 Open Research Dataset) and demonstrates key data analysis and visualization techniques using Python frameworks.
 
-This project explores the CORD-19 research dataset (COVID-19 papers) and demonstrates:
+Objectives
 
-- Loading and exploring real-world datasets
-- Data cleaning and preparation
-- Basic data analysis and visualizations
-- Building an interactive Streamlit application
+Load and explore real-world data
 
----
+Clean and prepare large datasets efficiently
 
+Visualize publication patterns and keyword trends
 
+Build an interactive web app using Streamlit
 
----
+🧹 2️⃣ Data Loading & Cleaning
+Steps Performed
 
-## 1️⃣ Data Loading and Exploration
+Loaded a sample of 2,000 rows from the original dataset for performance efficiency
 
-**Steps performed:**
+Cleaned missing values and standardized text columns
 
-- Loaded a sample of 100,000 rows from `metadata.csv` using `pandas`.
-- Examined the first few rows to understand the data structure.
-- Explored dataset dimensions, data types, and missing values.
-- Generated basic statistics for numerical columns.
+Converted publish_time to datetime format
 
-**Key Columns Used:**
+Extracted publication year
 
-| Column Name     | Description                                |
-|-----------------|--------------------------------------------|
-| `title`         | Title of the research paper                |
-| `abstract`      | Paper abstract                             |
-| `publish_time`  | Publication date                           |
-| `journal`       | Publishing journal                         |
-| `authors`       | List of authors                            |
+Added a new column for abstract word counts
 
----
-
-## 2️⃣ Data Cleaning and Preparation
-
-**Actions Taken:**
-
-- Handled missing values by filling abstracts with empty strings.
-- Converted `publish_time` to datetime format.
-- Extracted `year` from publication date for analysis.
-- Added new column `abstract_word_count` to analyze abstract lengths.
-
-```python
 df["publish_time"] = pd.to_datetime(df["publish_time"], errors="coerce")
 df["year"] = df["publish_time"].dt.year
 df["abstract_word_count"] = df["abstract"].fillna("").apply(lambda x: len(x.split()))
 
+📊 3️⃣ Data Analysis & Visualization
+Key Analyses
 
-3️⃣ Data Analysis and Visualization
+Publications over time — trends in COVID-19 research activity
 
-Analyses Performed:
+Top publishing journals — top 10 journals by publication count
 
-Number of publications over time – visualized yearly publication counts.
+Word cloud of titles — most frequent words in paper titles
 
-Top journals publishing COVID-19 research – bar chart of top 10 journals.
+Abstract length distribution — histogram showing paper length trends
 
-Most frequent words in paper titles – generated a word cloud.
+Libraries Used
 
-Abstract word count distribution – histogram of abstract lengths.
+pandas → data cleaning & manipulation
 
-Technologies Used:
+matplotlib, seaborn → data visualization
 
-pandas for data manipulation
+wordcloud → keyword visualization
 
-matplotlib & seaborn for visualizations
+streamlit → interactive web interface
 
-WordCloud for generating word clouds
+📈 Example Visualization:
 
-Sample Visualization:
+Top 10 Journals Publishing COVID-19 Research (bar chart)
 
-Top 10 Journals Bar Chart
+🌐 4️⃣ Streamlit Application
 
+The Streamlit app provides an interactive dashboard to explore the dataset dynamically.
 
-You can run the notebook locally to generate all plots dynamically.
+App Features
 
-4️⃣ Streamlit Application
+✅ Filter publications by year range
+✅ View dynamic visualizations (time trends, top journals, word clouds)
+✅ Explore sample data directly in the browser
 
-Features:
+Running Locally
 
-Interactive slider to filter papers by publication year.
+Install dependencies:
+pip install -r requirements.txt
 
-Displays a sample of filtered data.
-
-Shows dynamic visualizations:
-
-Publications over time
-
-Top journals
-
-Word cloud of paper titles
-
-Abstract word count distribution
-
-Running the App:
-
-Make sure Streamlit is installed:
-
-pip install streamlit
-
-
-Run the app from your terminal/command prompt:
-
+Run the Streamlit app:
 streamlit run meta.py
+Or view it online here:
+https://nomize-frameworks-assignment-meta-cst38i.streamlit.app/
 
-5️⃣ Challenges and Reflection
+Cloud
 
-Challenges:
+💭 5️⃣ Challenges & Reflections
+Challenges
 
-The dataset is very large (>1GB), which made loading it a challenge.
+Handling a large dataset (>1GB) that couldn’t be easily loaded on limited RAM
 
-Filtering and processing large datasets required memory-efficient techniques.
+Managing Git and Streamlit Cloud storage constraints
 
-Learning to integrate Jupyter analysis with Streamlit visualization.
+Optimizing for performance while maintaining analytical depth
 
-What I Learned:
+What I Learned
 
-Practical experience in data cleaning, analysis, and visualization.
+Practical data cleaning and visualization workflows
 
-How to create an interactive web app using Streamlit.
+Integrating Python notebooks with Streamlit for web-based analysis
 
-Understanding the workflow of a real-world data science project from raw data to insights.
+Efficient handling of real-world data at scale
 
-6️⃣ Credits
+Deployment of machine learning/data apps on cloud platforms
 
-CORD-19 Dataset
- – COVID-19 Open Research Dataset
+🙌 6️⃣ Credits
 
-Python Libraries: pandas, matplotlib, seaborn, wordcloud, streamlit
+Dataset: CORD-19 (COVID-19 Open Research Dataset)
 
+Frameworks: pandas, matplotlib, seaborn, wordcloud, streamlit
+
+Created by: Nomize 
+
+🧭 Final Notes
+
+The app is fully deployed and functional on Streamlit Cloud.
+
+You can clone this repository, replace the sample dataset with your own, and run the analysis locally.
+
+The analysis output varies depending on the selected publication year range — wider year spans yield richer visualizations.

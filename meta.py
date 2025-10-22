@@ -6,7 +6,7 @@ from wordcloud import WordCloud
 
 # --- Load Data ---
 cols = ["title", "abstract", "publish_time", "journal", "authors"]
-df = pd.read_csv("metadata.csv", usecols=cols, nrows=100000, low_memory=False)
+df = pd.read_csv("data/metadata.csv", usecols=cols, nrows=100000, low_memory=False)
 
 # --- Preprocess Data ---
 df["publish_time"] = pd.to_datetime(df["publish_time"], errors="coerce")

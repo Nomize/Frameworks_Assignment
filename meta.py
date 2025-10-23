@@ -35,7 +35,7 @@ year_range = st.sidebar.slider(
     "Select Year Range",
     int(df["year"].min()),
     int(df["year"].max()),
-    (2020, 2021)
+    (2009, 2021)
 )
 top_n = st.sidebar.slider(
     "Number of Top Journals to Display",
